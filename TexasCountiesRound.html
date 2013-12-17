@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+</style>
+
+<script type="text/javascript">
+    var svgPath = "CountyMap.svg";
+
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        visualize();        
+
+    });
+
+    function visualize() {
+
+        var svg = d3.select("svg");
+
+
+  
+            svg.selectAll("path")
+               .each(function(d, i) { 
+                   d3.select(this)
+                       .transition()
+                       .duration(i*17)
+                       .style("fill","red")       
+                }); 
+  
+    }
+
+</script>
+
+
+</body>
+</html>

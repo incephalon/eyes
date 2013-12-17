@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+</style>
+
+<script type="text/javascript">
+    var svgPath = "CountyMap.svg";
+
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        visualize();
+    });
+
+    function visualize() {
+//        var stateIds = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+        var svg = d3.select("svg");
+
+        //var selector = "path#" + stateIds.join(",path#");
+        //console.log(selector);
+        svg.selectAll("path")
+            .style("fill", function(d){
+                elm = d3.select(this);
+                if(elm.attr('id')=='Seagoville'){
+                    return 'blue';
+                }
+                    else
+                     {
+                     return 'black';
+                     }
+                    
+            })
+//            .on("mouseenter", function(d) {
+//                //d3.select(this).style("fill", "red");
+//                elm = d3.select(this);
+//                if(elm.attr('id')=='dallas'){
+//                    alert('Dallas');
+//                }
+//            }).on("mouseout", function(d) {
+//                    d3.select(this).style("fill", "white");
+//            });
+            
+            
+          svg.selectAll("path")
+            .on("mouseenter", function(d) {
+                //d3.select(this).style("fill", "red");
+                elm = d3.select(this);
+                if(elm.attr('id')=='Dallas'){
+                    //alert('Dallas');
+                }
+            }).on("mouseout", function(d) {
+                    d3.select(this).style("fill", "white");
+            });
+    }
+
+</script>
+
+
+</body>
+</html>

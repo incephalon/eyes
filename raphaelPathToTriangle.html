@@ -1,0 +1,22 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+
+
+<body>
+    
+    
+    
+</body>
+
+<script>
+
+var paper = Raphael(10, 50, 400,400);
+
+var testpath = paper.path("M10 10L90 90");
+
+var _transformedPath = Raphael.transformPath('"M150 0 L75 200 L225 200 Z"');
+
+testpath.animate({path: _transformedPath}, 1000);
+
+
+</script>

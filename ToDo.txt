@@ -1,0 +1,6 @@
+fix TexasCounty svg
+clipping
+cylinder (with gradient over bottom too)
+lines to county
+from left to county
+zoom with viewbox (and pan)
