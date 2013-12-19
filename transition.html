@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+</style>
+
+<script type="text/javascript">
+    var svgPath = "CountyMap.svg";
+    
+    
+    
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        addLines();
+        transform()
+
+    });
+    var counties = new Array();
+    
+    function addLines(){
+        var svg = d3.select("svg");
+        svg.append("g")
+        .attr("id","lines");
+         svg.selectAll("path")
+               .each(function(d, i) {
+                   
+                   counties[i] = (d3.select(this).attr("d"));
+                   
+                   svg.select("#lines").append("path")
+                    .attr("stroke","#010101")
+                    .attr("fill","none")
+                    .attr("stroke-width","0.1126") 
+                    .attr("id","line"+i)
+                    .attr("d","M10 10L10 90");
+                }); 
+    }
+    function transform(){
+          var svg = d3.select("svg");
+            for(var i =0; i<counties.length;i++)
+            {
+                svg.select("#line"+i)
+                .transition()
+                .duration(2000)
+                .attr("d",counties[i]);
+            }
+    }
+    
+    function visualize() {
+
+        var svg = d3.select("svg");
+
+
+  
+            svg.selectAll("path")
+               .each(function(d, i) { 
+                   d3.select(this)
+                       .transition()
+                       .duration(i*17);                              
+                }); 
+  
+    }
+
+</script>
+
+
+</body>
+</html>
