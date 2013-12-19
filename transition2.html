@@ -19,41 +19,37 @@
     
     
     d3.xml(svgPath, "image/svg+xml", function(xml) {
-        console.log(xml.documentElement.selecAll('path'));
-        addLines();
+        document.body.appendChild(xml.documentElement);
+        toLines();
         transform()
 
     });
     var counties = new Array();
     
-    function addLines(){
+    function toLines(){
         var svg = d3.select("svg");
-        svg.append("g")
-        .attr("id","lines");
-         
-        svg.selectAll("path")
+       svg.selectAll("path")
                .each(function(d, i) {
-                   
                    counties[i] = (d3.select(this).attr("d"));
                    
-                   svg.select("#lines").append("path")
-                    .attr("stroke","#010101")
-                    .attr("fill","none")
-                    .attr("stroke-width","0") 
-                    .attr("id","line"+i)
-                    .attr("d","M10 10L10 90");
                 }); 
+        svg.selectAll("path")
+        .each((function(d, i) {
+                   
+            d3.select(this).attr("d","M10 10L10 90");
+                   
+                })); 
+                
     }
     function transform(){
           var svg = d3.select("svg");
-            for(var i =0; i<counties.length;i++)
-            {
-                svg.select("#line"+i)
+            svg.selectAll("path")
+            .each(function(d, i) {
+                d3.select(this)
                 .transition()
-                .duration(3000)
-                .attr("d",counties[i])
-                .attr("stroke-width","0.1126");
-            }
+                .duration(700)
+                .attr("d",counties[i]);
+            });
     }
     
     
