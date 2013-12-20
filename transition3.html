@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+    
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+</style>
+
+<script type="text/javascript">
+    var svgPath = "CountyMap.svg";
+    
+    
+    
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        toLines();
+       
+    });
+    var counties = new Array();
+    
+    function toLines(){
+    var svg = d3.select("svg");
+
+       
+        d3.select("#anim").transition().duration(2000).attrTween("transform", function(d, i, a) {
+    return d3.interpolateString(a, 'scale(1)');
+});        
+    }
+
+    
+    
+
+</script>
+
+
+</body>
+</html>

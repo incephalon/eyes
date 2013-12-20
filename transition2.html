@@ -35,8 +35,14 @@
                 }); 
         svg.selectAll("path")
         .each((function(d, i) {
-                   
-            d3.select(this).attr("d","M10 10L10 90");
+            
+            var dAttribute = "M0 ";
+            for(var i = 0; i < 200; i++)
+            {
+                dAttribute+=",0L0";
+            }
+            dAttribute+=",0";
+            d3.select(this).attr("d",dAttribute);
                    
                 })); 
                 
@@ -47,7 +53,10 @@
             .each(function(d, i) {
                 d3.select(this)
                 .transition()
-                .duration(700)
+                .delay(300)
+                .duration(1000)
+                .ease("linear")
+                .attr("stroke-width","0.2126")
                 .attr("d",counties[i]);
             });
     }
