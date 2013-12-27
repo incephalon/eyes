@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Zoom + Pan</title>
+<script src="http://d3js.org/d3.v2.min.js"></script>
+<style>
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+</style>
+<body>
+<script>
+
+var width = 960,
+    height = 500;
+
+var randomX = d3.random.normal(width / 2, 80),
+    randomY = d3.random.normal(height / 2, 80);
+
+var data = d3.range(2000).map(function() {
+  return [
+    randomX(),
+    randomY()
+  ];
+});
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom))
+  .append("g");
+
+svg.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("path")
+    .attr("d", "M315.959,290.719l8.783,2.678l-1.768,3.076l-0.225,0.721l-1.479,4.65l-2.902,8.514l-4.342,4.216l-6.764-8.388l0.023-15.803l7.588-0.012L315.959,290.719z");
+
+function zoom() {
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+</script>

@@ -4,8 +4,8 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
 <g transform = 'scale(1)' id="anim">
-	
-		
+		<g>
+	<rect class="overlay" width="500" height="500"></rect>
 	<path id="Anderson" fill="none" stroke="#010101" stroke-width="0.1126" stroke-linejoin="round" d="M424.27,218.331l0.117,0.28
 		l-0.143,0.04l-0.121,0.059l-0.082,0.059l-0.123,0.159l-0.082,0.197l0.057,0.279l0.018,0.221l0.039,0.177l0.123,0.063l0.299,0.102
 		h0.078l0.061,0.06v0.26l-0.043,0.04l-0.119,0.02h-0.104l-0.141,0.015l-0.1,0.021l-0.063,0.079l-0.039,0.079l0.059,0.043
@@ -3583,5 +3583,7 @@
 		l0.02-0.243l0.063-0.261v-0.304l-0.059-0.299l-0.078-0.226l-0.236-0.202l-0.202-0.121l3.482-1.653l1.427,1.558L293.891,431.731z"/>
 	<path id="Zavala" fill="none" stroke="#010101" stroke-width="0.1126" stroke-linejoin="round" d="M249.184,352.31l16.539-0.067
 		l10.391,0.012l0.398,19.461l-27.423,0.095l0.02-4.574L249.184,352.31z"/>
+
 </g>
+    </g>
 </svg>
