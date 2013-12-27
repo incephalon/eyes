@@ -36,7 +36,7 @@
 
  
         
-    var map = svg.select("g").select("g");
+    var map = svg.select("g");
         
     
     map.selectAll("path").each(function(d,i){ d3.select(this).attr("transform","translate("+randomCorner()+","+randomCorner()+")"); })
@@ -73,7 +73,7 @@
     }
     
 function zoom() {
-      var svg = d3.select("svg").select("g").select("g");
+      var svg = d3.select("svg").select("g");
   svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 
