@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+    
+<style type="text/css">
+    
+</style>
+
+<script type="text/javascript">
+   var svg= d3.select("body").append("svg")
+				.attr("width", 600)
+				.attr("height", 600);
+   
+ var data = ["blue", "red", "green"];    
+
+
+var rects = d3.select("svg").selectAll("rect")
+    .data(data)
+    .enter().append("rect")
+    .style("fill",function(d) { return  d ; })
+    .attr("y", 410)
+    .attr("id", function(d,i){return "rect"+i;})
+    .attr("x", function(d,i){ return (i+1)*100-40;})
+	.attr("width", 80)
+    .attr("height",1)
+    .attr("stroke","black")
+    .attr("stroke-width",3);    
+var ellipses = d3.select("svg").selectAll("ellipse")
+    .data(data)
+    .enter().append("ellipse")
+    .style("fill",function(d) { return  d ; })
+    .attr("cy", 410)
+	.attr("cx", function(d,i){ return (i+1)*100;})
+	.attr("rx", 40)
+	.attr("ry", 30)
+    .attr("stroke","black")
+    .attr("stroke-width",3);   ;
+
+    var rects2 = d3.select("svg").selectAll("rect2")
+    .data(data)
+    .enter().append("rect")
+    .style("fill",function(d) { return  d ; })
+    .attr("y", 410)
+    .attr("id", function(d,i){return "rect2"+i;})
+    .attr("x", function(d,i){ return (i+1)*100-38;})
+	.attr("width",76 )
+    .attr("height",1);
+    
+var ellipses2 = d3.select("svg").selectAll("ellipse1")
+    .data(data)
+    .enter().append("ellipse")
+    .style("fill",function(d) { return  d ; })
+    .attr("cy", 410)
+	.attr("cx", function(d,i){ return (i+1)*100;})
+	.attr("rx", 40)
+	.attr("ry", 30)
+    .attr("class","ell")
+    .attr("stroke","black")
+    .attr("stroke-width",3);    
+
+
+
+    
+ellipses2.on("mouseover",function(d,i){ d3.select(this).transition().duration(1000).attr("cy",100);
+         d3.select("#rect"+i).transition().duration(1000).attr("height",310).attr("y",100);                             
+         d3.select("#rect2"+i).transition().duration(1000).attr("height",310).attr("y",100);                             
+                                      }
+            
+            );  
+ellipses2.on("mouseout",function(d,i){ d3.select(this).transition().duration(1000).attr("cy",410);
+         d3.select("#rect"+i).transition().duration(1000).attr("height",0).attr("y",410);                             
+         d3.select("#rect2"+i).transition().duration(1000).attr("height",0).attr("y",410);                             
+                                      }
+            
+            );      
+    
+</script>
+
+
+</body>
+</html>
