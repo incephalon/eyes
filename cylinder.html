@@ -16,7 +16,7 @@
 				.attr("width", 600)
 				.attr("height", 600);
    
- var data = ["blue", "red", "green"];    
+ var data = ["blue", "red", "green","purple"];    
 
 
 var rects = d3.select("svg").selectAll("rect")
@@ -69,9 +69,9 @@ var ellipses2 = d3.select("svg").selectAll("ellipse1")
 ellipses2.on("mouseover",function(d,i){ d3.select(this).transition().ease("elastic").duration(1000).attr("cy",(i+2)*75);
          d3.select("#rect"+i).transition().ease("elastic").duration(1000).attr("height",410-(i+2)*75).attr("y",(i+2)*75);                             
          d3.select("#rect2"+i).transition().ease("elastic").duration(1000).attr("height",410-(i+2)*75).attr("y",(i+2)*75);                             
-        d3.select(this).transition().delay((i+1)*1000).duration((i+1)*600).attr("cy",410);
-         d3.select("#rect"+i).transition().delay((i+1)*1000).duration((i+1)*600).attr("height",0).attr("y",410);                             
-         d3.select("#rect2"+i).transition().delay((i+1)*1000).duration((i+1)*600).attr("height",0).attr("y",410);                                
+        d3.select(this).transition().delay(1000+(i+1)*300).duration((i+1)*600).attr("cy",410);
+         d3.select("#rect"+i).transition().delay(1000+(i+1)*300).duration((i+1)*600).attr("height",0).attr("y",410);                             
+         d3.select("#rect2"+i).transition().delay(1000+(i+1)*300).duration((i+1)*600).attr("height",0).attr("y",410);                                
                                       }
             
             );  
