@@ -66,18 +66,16 @@ var ellipses2 = d3.select("svg").selectAll("ellipse1")
 
 
     
-ellipses2.on("mouseover",function(d,i){ d3.select(this).transition().duration(1000).attr("cy",100);
-         d3.select("#rect"+i).transition().duration(1000).attr("height",310).attr("y",100);                             
-         d3.select("#rect2"+i).transition().duration(1000).attr("height",310).attr("y",100);                             
+ellipses2.on("mouseover",function(d,i){ d3.select(this).transition().duration(1000).attr("cy",(i+1)*50);
+         d3.select("#rect"+i).transition().duration(1000).attr("height",410-(i+1)*50).attr("y",(i+1)*50);                             
+         d3.select("#rect2"+i).transition().duration(1000).attr("height",410-(i+1)*50).attr("y",(i+1)*50);                             
+        d3.select(this).transition().delay((i+1)*1000).duration((i+1)*1000).attr("cy",410);
+         d3.select("#rect"+i).transition().delay((i+1)*1000).duration((i+1)*1000).attr("height",0).attr("y",410);                             
+         d3.select("#rect2"+i).transition().delay((i+1)*1000).duration((i+1)*1000).attr("height",0).attr("y",410);                                
                                       }
             
             );  
-ellipses2.on("mouseout",function(d,i){ d3.select(this).transition().duration(1000).attr("cy",410);
-         d3.select("#rect"+i).transition().duration(1000).attr("height",0).attr("y",410);                             
-         d3.select("#rect2"+i).transition().duration(1000).attr("height",0).attr("y",410);                             
-                                      }
-            
-            );      
+
     
 </script>
 
