@@ -29,8 +29,11 @@
     d3.xml(svgPath, "image/svg+xml", function(xml) {
         document.body.appendChild(xml.documentElement);
         
+    var dallas = document.getElementById("Dallas").getBBox();
+    var bexar = document.getElementById("Bexar").getBBox();
+    var harris = document.getElementById("Harris").getBBox();
     
-        var svg = d3.select("svg");
+    var svg = d3.select("svg");
   
       svg.select("g").call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom));     
 
@@ -50,19 +53,47 @@
         .delay(random(i))
         .duration(1000).ease("linear")
         .attr("transform","translate(0,0)"); });
-        
+   
+    var svg = d3.select("svg").select("g");    
+   
     
-      /*  map.selectAll("path").on("click", function(d,i) {
-            var bb = this.getBBox();
-            svg.attr("viewBox",(bb.x-50+bb.width/2)+','+(bb.y-50+bb.height/2)+',100,100');
-        });
-        */
+    
+       
+
+        d3.select("svg").select("g").transition()
+        .delay(3000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*dallas.x,width/2-30)-Math.min(4*dallas.x,width/2-30)))+","+(-(Math.max(4*dallas.y,height/2-30)-Math.min(4*dallas.y,height/2-30)))+")scale(4)"); 
+         
+        svg.select("#Dallas").each(function(d,i){ d3.select(this).transition().delay(3000)
+        .duration(1000).attr("fill","blue"); });
   
+         d3.select("svg").select("g").transition()
+        .delay(4000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*bexar.x,width/2-30)-Math.min(4*bexar.x,width/2-30)))+","+(-(Math.max(4*bexar.y,height/2-30)-Math.min(4*bexar.y,height/2-30)))+")scale(4)"); 
+         
+ svg.select("#Bexar_1_").each(function(d,i){ d3.select(this).transition().delay(3000)
+        .duration(1000).attr("fill","blue"); });
+        
+         d3.select("svg").select("g").transition()
+        .delay(5000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*harris.x,width/2-50)-Math.min(4*harris.x,width/2-50)))+","+(-(Math.max(4*harris.y,height/2-50)-Math.min(4*harris.y,height/2-50)))+")scale(4)"); 
+         
+        svg.select("#Harris").each(function(d,i){ d3.select(this).transition().delay(5000)
+        .duration(1000).attr("fill","blue"); });
+  
+  d3.select("svg").select("g").transition()
+        .delay(6000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate(0,0)"); 
+         
     });
     
     function random(i)
     {
-        return(15*i*Math.random());
+        return(8*i*Math.random());
     }
     function randomCorner()
     {
@@ -75,7 +106,9 @@
 function zoom() {
       var svg = d3.select("svg").select("g");
   svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
 }
+    
 
 </script>
 
