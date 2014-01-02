@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    </head>
+<body>
+
+    
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+     .overlay {
+          fill: none;
+          pointer-events: all;
+        }
+        
+</style>
+
+<script type="text/javascript">
+    var svgPath = "CountyMap.svg";
+    var width = 500;
+    var height = 500;
+    
+    
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        
+    var dallas = document.getElementById("Dallas").getBBox();
+    var bexar = document.getElementById("Bexar").getBBox();
+    var harris = document.getElementById("Harris").getBBox();
+    
+    var svg = d3.select("svg");
+  
+      svg.select("g").call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom));     
+
+ 
+        
+    var map = svg.select("g");
+        
+    
+    map.selectAll("path").each(function(d,i){ d3.select(this).attr("transform","translate("+randomCorner()+","+randomCorner()+")"); })
+    .attr("stroke-width","0.3")
+     .attr("fill","black")
+    .attr("stroke","red");
+   
+    map.selectAll("path").each(function(d,i){
+        d3.select(this)
+        .transition()
+        .delay(random(i))
+        .duration(1000).ease("linear")
+        .attr("transform","translate(0,0)"); });
+   
+    var svg = d3.select("svg").select("g");    
+   
+    
+    
+       
+
+        d3.select("svg").select("g").transition()
+        .delay(3000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*dallas.x,width/2-30)-Math.min(4*dallas.x,width/2-30)))+","+(-(Math.max(4*dallas.y,height/2-30)-Math.min(4*dallas.y,height/2-30)))+")scale(4)"); 
+         
+        svg.select("#Dallas").each(function(d,i){ d3.select(this).transition().delay(3000)
+        .duration(1000).attr("fill","blue"); });
+  
+         d3.select("svg").select("g").transition()
+        .delay(4000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*bexar.x,width/2-30)-Math.min(4*bexar.x,width/2-30)))+","+(-(Math.max(4*bexar.y,height/2-30)-Math.min(4*bexar.y,height/2-30)))+")scale(4)"); 
+         
+ svg.select("#Bexar_1_").each(function(d,i){ d3.select(this).transition().delay(3000)
+        .duration(1000).attr("fill","blue"); });
+        
+         d3.select("svg").select("g").transition()
+        .delay(5000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate("+(-(Math.max(4*harris.x,width/2-50)-Math.min(4*harris.x,width/2-50)))+","+(-(Math.max(4*harris.y,height/2-50)-Math.min(4*harris.y,height/2-50)))+")scale(4)"); 
+         
+        svg.select("#Harris").each(function(d,i){ d3.select(this).transition().delay(5000)
+        .duration(1000).attr("fill","blue"); });
+  
+  d3.select("svg").select("g").transition()
+        .delay(6000)
+        .duration(1000).ease("linear")
+        .attr("transform","translate(0,0)"); 
+         
+    });
+    
+    function random(i)
+    {
+        return(8*i*Math.random());
+    }
+    function randomCorner()
+    {
+        var n = Math.floor(Math.random()*3);
+        if(n%2==0){return(-500);}
+        else{return(500);}
+        
+    }
+    
+function zoom() {
+      var svg = d3.select("svg").select("g");
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
+}
+    
+
+</script>
+
+
+</body>
+</html>

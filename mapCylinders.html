@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   
+    </head>
+<body>
+
+    
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+ .overlay {
+          fill: none;
+          pointer-events: all;
+        }
+        
+</style>
+
+<script type="text/javascript">
+    var svgPath = "map.svg";
+   
+    
+var data = [[200,300,25],[300,90,7],[200,100,12]]; 
+    
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+    drawMeCylinders(data);
+    
+    });
+        
+function drawMeCylinders(data)
+{
+
+var width = 20;   
+    
+var svg = d3.select("svg")
+   
+
+
+var rects = d3.select("svg").selectAll("rect")
+    .data(data)
+    .enter().append("rect")
+    .style("fill","grey")
+    .attr("id", function(d,i){return "rect"+i;})
+    .attr("y", function(d,i){return d[1];})
+    .attr("x", function(d,i){ return d[0]-width/2;})
+	.attr("width", width)
+    .attr("height",1)
+    .attr("stroke","black")
+    .attr("stroke-width",1);
+    
+var ellipses = d3.select("svg").selectAll("ellipse")
+    .data(data)
+    .enter().append("ellipse")
+    .style("fill","grey")
+    .attr("cy", function(d,i){return d[1];})
+	.attr("cx", function(d,i){return d[0];})
+	.attr("rx", width/2)
+	.attr("ry", width/3)
+    .attr("stroke","black")
+    .attr("stroke-width",1);
+                              
+var rects2 = d3.select("svg").selectAll("rect2")
+    .data(data)
+    .enter().append("rect")
+    .style("fill","grey")
+    .attr("y", function(d,i){return d[1];})
+    .attr("id", function(d,i){return "rect2"+i;})
+    .attr("x", function(d,i){ return d[0]-width/2+1;})
+	.attr("width", width-2)
+    .attr("height",1);
+
+var ellipses2 = d3.select("svg").selectAll("ellipse2")
+    .data(data)
+    .enter().append("ellipse")
+    .style("fill","grey")
+    .attr("cy", function(d,i){return d[1];})
+	.attr("cx", function(d,i){return d[0];})
+	.attr("rx", width/2)
+	.attr("ry", width/3)
+    .attr("stroke","black")
+    .attr("stroke-width",1);
+
+    ellipses2.on("mouseover",function(d,i){
+        d3.select(this).transition()
+        .ease("elastic")
+        .duration(1000)
+        .attr("cy", data[i][1]-data[i][2]);
+        
+         d3.select("#rect"+i).transition().ease("elastic").duration(1000)
+         .attr("height",data[i][2])
+         .attr("y",data[i][1]-data[i][2]);                             
+         d3.select("#rect2"+i).transition().ease("elastic").duration(1000)
+         .attr("height",data[i][2])
+         .attr("y",data[i][1]-data[i][2]);                             
+       
+        d3.select(this).transition().delay(1000).duration(1000).attr("cy",data[i][1]);
+        d3.select("#rect"+i).transition().delay(1000).duration(1000).attr("height",0).attr("y",data[i][1]);                             
+        d3.select("#rect2"+i).transition().delay(1000).duration(1000).attr("height",0).attr("y",data[i][1]);                                
+                                      }
+            
+            );  
+
+
+        
+}
+    
+
+</script>
+
+
+</body>
+</html>
