@@ -79,32 +79,29 @@ var ellipses2 = d3.select("svg").selectAll("ellipse2")
     .enter().append("ellipse")
     .style("fill",function(d,i){return d[3];})
     .attr("cy", function(d,i){return d[1];})
+    .attr("id", function(d,i){return "ellipse2"+i;})
 	.attr("cx", function(d,i){return d[0];})
 	.attr("rx", width/2)
 	.attr("ry", width/3)
     .attr("stroke","black")
     .attr("stroke-width",1);
 
-    ellipses2.on("mouseover",function(d,i){
-        d3.select(this).transition()
+for(var i = 0; i < data.length; i++)
+{    
+      d3.select("#ellipse2"+i).transition()
         .ease("elastic")
-        .duration(1000)
+        .duration(2000)
         .attr("cy", data[i][1]-data[i][2]);
         
-         d3.select("#rect"+i).transition().ease("elastic").duration(1000)
+         d3.select("#rect"+i).transition().ease("elastic").duration(2000)
          .attr("height",data[i][2])
          .attr("y",data[i][1]-data[i][2]);                             
-         d3.select("#rect2"+i).transition().ease("elastic").duration(1000)
+         d3.select("#rect2"+i).transition().ease("elastic").duration(2000)
          .attr("height",data[i][2])
          .attr("y",data[i][1]-data[i][2]);                             
        
-        d3.select(this).transition().delay(1000).duration(1000).attr("cy",data[i][1]);
-        d3.select("#rect"+i).transition().delay(1000).duration(1000).attr("height",0).attr("y",data[i][1]);                             
-        d3.select("#rect2"+i).transition().delay(1000).duration(1000).attr("height",0).attr("y",data[i][1]);                                
-                                      }
+}
             
-            );  
-
 
         
 }
