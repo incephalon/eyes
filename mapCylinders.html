@@ -24,7 +24,7 @@
     var svgPath = "map.svg";
    
     
-var data = [[200,300,25],[300,90,7],[200,100,12]]; 
+var data = [[200,300,25,"blue"],[300,90,7,"green"],[200,100,12,"violet"]]; 
     
     d3.xml(svgPath, "image/svg+xml", function(xml) {
         document.body.appendChild(xml.documentElement);
@@ -44,7 +44,7 @@ var svg = d3.select("svg")
 var rects = d3.select("svg").selectAll("rect")
     .data(data)
     .enter().append("rect")
-    .style("fill","grey")
+    .style("fill",function(d,i){return d[3];})
     .attr("id", function(d,i){return "rect"+i;})
     .attr("y", function(d,i){return d[1];})
     .attr("x", function(d,i){ return d[0]-width/2;})
@@ -56,7 +56,7 @@ var rects = d3.select("svg").selectAll("rect")
 var ellipses = d3.select("svg").selectAll("ellipse")
     .data(data)
     .enter().append("ellipse")
-    .style("fill","grey")
+    .style("fill",function(d,i){return d[3];})
     .attr("cy", function(d,i){return d[1];})
 	.attr("cx", function(d,i){return d[0];})
 	.attr("rx", width/2)
@@ -67,7 +67,7 @@ var ellipses = d3.select("svg").selectAll("ellipse")
 var rects2 = d3.select("svg").selectAll("rect2")
     .data(data)
     .enter().append("rect")
-    .style("fill","grey")
+    .style("fill",function(d,i){return d[3];})
     .attr("y", function(d,i){return d[1];})
     .attr("id", function(d,i){return "rect2"+i;})
     .attr("x", function(d,i){ return d[0]-width/2+1;})
@@ -77,7 +77,7 @@ var rects2 = d3.select("svg").selectAll("rect2")
 var ellipses2 = d3.select("svg").selectAll("ellipse2")
     .data(data)
     .enter().append("ellipse")
-    .style("fill","grey")
+    .style("fill",function(d,i){return d[3];})
     .attr("cy", function(d,i){return d[1];})
 	.attr("cx", function(d,i){return d[0];})
 	.attr("rx", width/2)
