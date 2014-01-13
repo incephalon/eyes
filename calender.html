@@ -32,7 +32,7 @@ text-align:center;
 </style>
 </head>
 <body>
-    <h1>Elvis Andrus's hits in 2013</h1>
+    <h1>Elvis Andrus's hits from 2009 to 2013</h1>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -52,7 +52,7 @@ var color = d3.scale.quantize()
     .range(d3.range(6).map(function(d) { return "q" + d + "-6"; }));
 
 var svg = d3.select("body").selectAll("svg")
-    .data(d3.range(2013, 2014))
+    .data(d3.range(2009, 2014))
   .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
