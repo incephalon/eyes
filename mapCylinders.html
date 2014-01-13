@@ -3,6 +3,7 @@
 <head>
     
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script type="text/javascript" src="snap.svg.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
    
     </head>
@@ -22,13 +23,15 @@
 
 <script type="text/javascript">
     var svgPath = "map.svg";
-   
+    var drawingsOnCylinder = new Array(),s;
     
 var data = [[200,300,25,"blue"],[300,90,7,"green"],[200,100,12,"violet"]]; 
     
     d3.xml(svgPath, "image/svg+xml", function(xml) {
         document.body.appendChild(xml.documentElement);
-    drawMeCylinders(data);
+        s = Snap("#Layer_1");
+        
+        drawMeCylinders(data);
     
     });
         
@@ -98,8 +101,9 @@ for(var i = 0; i < data.length; i++)
          .attr("y",data[i][1]-data[i][2]);                             
          d3.select("#rect2"+i).transition().ease("elastic").duration(2000)
          .attr("height",data[i][2])
-         .attr("y",data[i][1]-data[i][2]);                             
-       
+         .attr("y",data[i][1]-data[i][2]);
+    
+        drawingsOnCylinder = s.image("baseball.png", data[i][0]-width/2-5, data[i][1]-data[i][2]-35, 30, 30);
 }
             
 
