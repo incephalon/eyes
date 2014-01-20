@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    </head>
+<body>
+
+    
+<style type="text/css">
+    svg {
+        border: 1px solid #dddddd;
+    }
+     .overlay {
+          fill: none;
+          pointer-events: all;
+        }
+    RdYlGn .q0-6{fill:rgb(255, 230, 240)}
+.RdYlGn .q1-6{fill:rgb(232, 139, 145)}
+.RdYlGn .q2-6{fill:rgb(209, 110, 119)}
+.RdYlGn .q3-6{fill:rgb(186, 81, 92)}
+.RdYlGn .q4-6{fill:rgb(163, 52, 66)}
+.RdYlGn .q5-6{fill:rgb(140, 23, 40)}
+
+ 
+</style>
+
+<script type="text/javascript">
+    
+    var svgPath = "CountyMap.svg";
+    var width = 500;
+    var height = 500;
+    var colorOfCounty;
+    var colorArray = ["rgb(255, 230, 240)", "rgb(232, 139, 145)","rgb(209, 110, 119)" ,"rgb(186, 81, 92)", "rgb(163, 52, 66)", "rgb(140, 23, 40)"];
+   
+    var color = d3.scale.quantize()
+        .domain([0,200])
+        .range(d3.range(6).map(function(d) {return colorArray[d]; }));
+    
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        document.body.appendChild(xml.documentElement);
+        var svg = d3.select("svg");
+        svg.select("g").call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom));     
+        var map = svg.select("g");
+    map.selectAll("path").attr("fill", function(){return "white";});
+    
+        function  foo(s)
+        {
+            var result="";
+            s = s.split(" ");
+            for(var a = 0; a< s.length ;a ++){
+                result = result +format(s[a]) +"_";}
+            return result.substr(0,result.length-1);
+                                         
+        }
+        
+        function format(s)
+        { return s.substr(0,1).toUpperCase()+s.substr(1,s.length).toLowerCase();}
+        
+        d3.json("heat.json", function(temp) {
+        
+        for(i=0;i<temp.length;i++)
+        {
+             
+            
+                 var z= color(temp[i][1997]);
+           
+            svg.select("#"+foo(temp[i]["County"]))
+            .transition.duration(1000)   
+            .style("fill", function(){
+                return z;});
+        
+            svg.select("#"+foo(temp[i]["County"])).selectAll("path")
+            .transition.duration(1000)
+            .style("fill", function(){return z;});
+             
+            
+            
+            
+        }
+        
+    });    
+function zoom() {
+      var svg = d3.select("svg").select("g");
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
+}
+        
+        
+  });
+    
+    
+
+</script>
+
+
+</body>
+</html>
