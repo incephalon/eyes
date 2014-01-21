@@ -17,14 +17,7 @@
           fill: none;
           pointer-events: all;
         }
-    RdYlGn .q0-6{fill:rgb(255, 230, 240)}
-.RdYlGn .q1-6{fill:rgb(232, 139, 145)}
-.RdYlGn .q2-6{fill:rgb(209, 110, 119)}
-.RdYlGn .q3-6{fill:rgb(186, 81, 92)}
-.RdYlGn .q4-6{fill:rgb(163, 52, 66)}
-.RdYlGn .q5-6{fill:rgb(140, 23, 40)}
 
- 
 </style>
 
 <script type="text/javascript">
@@ -32,12 +25,8 @@
     var svgPath = "CountyMap.svg";
     var width = 500;
     var height = 500;
-    var colorOfCounty;
-    var colorArray = ["rgb(255, 230, 240)", "rgb(232, 139, 145)","rgb(209, 110, 119)" ,"rgb(186, 81, 92)", "rgb(163, 52, 66)", "rgb(140, 23, 40)"];
-   
-    var color = d3.scale.quantize()
-        .domain([0,200])
-        .range(d3.range(6).map(function(d) {return colorArray[d]; }));
+      
+    var  color = d3.scale.linear().domain([1,1000]).range(['white', "rgb(140, 23, 40)"]);
     
     d3.xml(svgPath, "image/svg+xml", function(xml) {
         document.body.appendChild(xml.documentElement);
@@ -62,7 +51,7 @@
         d3.json("heat.json", function(temp) {
         
         var year = 1997;
-        var k=0
+        var k=0;
         for(year=1997;year<=2013;year++)
             {
             
@@ -88,6 +77,7 @@
             }
         });
             k++;
+    
             }
         
     });    
