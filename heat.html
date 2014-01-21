@@ -61,25 +61,34 @@
         
         d3.json("heat.json", function(temp) {
         
-        for(i=0;i<temp.length;i++)
-        {
-             
+        var year = 1997;
+        var k=0
+        for(year=1997;year<=2013;year++)
+            {
             
-                 var z= color(temp[i][1997]);
-           
+        svg.selectAll("path").each(function(d,i){
+            if(temp[i])
+            {    
+            var z= color(temp[i][year]);
+             
             svg.select("#"+foo(temp[i]["County"]))
-            .transition.duration(1000)   
+             .transition()
+             .duration(1000)
+            .delay(1000*k)
+            .style("fill", function(){
+                return z;});
+            
+            svg.select("#"+foo(temp[i]["County"])).selectAll("path")
+             .transition()
+            .delay(1000*k)
+             .duration(1000)
             .style("fill", function(){
                 return z;});
         
-            svg.select("#"+foo(temp[i]["County"])).selectAll("path")
-            .transition.duration(1000)
-            .style("fill", function(){return z;});
-             
-            
-            
-            
-        }
+            }
+        });
+            k++;
+            }
         
     });    
 function zoom() {
