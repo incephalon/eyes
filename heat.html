@@ -26,8 +26,13 @@
     var width = 500;
     var height = 500;
       
-    var  color = d3.scale.linear().domain([1,1000]).range(['white', "rgb(140, 23, 40)"]);
-    
+    var  color = d3.scale.linear().domain([0,100,700]).range(['white', 'red',"rgb(140, 23, 40)"]).clamp(true);
+   
+    /* color = d3.scale.quantize()
+        .domain([0,600])
+        .range(d3.range(6).map(function(d) {return colorArray[d]; }));
+
+    */
     d3.xml(svgPath, "image/svg+xml", function(xml) {
         document.body.appendChild(xml.documentElement);
         var svg = d3.select("svg");
@@ -53,35 +58,44 @@
         function format(s)
         { return s.substr(0,1).toUpperCase()+s.substr(1,s.length).toLowerCase();}
         
+        
         d3.json("heat.json", function(data) {
         
         data.forEach(function(d,i) {
             data[i]["County"]=foo(data[i]["County"]);
+            for(var y=1997;y<=2013;y++)
+            {
+                data[i][y]=color(data[i][y]);
+                
+            }
+                
         });
         
             
-        var year = 1997;
         var k=0;
-        for(year=1997;year<=2013;year++)
+
+
+        for(var year=1997;year<=2013;year++)
             {
-            
+           
         svg.selectAll("path").each(function(d,i){
             if(data[i])
             {    
-            var z= color(data[i][year]);
-             
+                var z = data[i][year];
             svg.select("#"+data[i]["County"])
              .transition()
-             .duration(1000)
+             .duration(1)
             .delay(1000*k)
             .style("fill", function(){
+                
                 return z;});
             
             svg.select("#"+data[i]["County"]).selectAll("path")
              .transition()
             .delay(1000*k)
              .duration(1000)
-            .style("fill", function(){
+            .style("fill", function(d,i){
+            
                 return z;});
         
             }
