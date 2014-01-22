@@ -41,6 +41,11 @@
             s = s.split(" ");
             for(var a = 0; a< s.length ;a ++){
                 result = result +format(s[a]) +"_";}
+            if((result[0]+result[1])=="Mc"){
+                result=result.substr(0,2)+result[2].toUpperCase()+result.substr(3,result.length);
+                    
+            }
+            
             return result.substr(0,result.length-1);
                                          
         }
@@ -48,26 +53,31 @@
         function format(s)
         { return s.substr(0,1).toUpperCase()+s.substr(1,s.length).toLowerCase();}
         
-        d3.json("heat.json", function(temp) {
+        d3.json("heat.json", function(data) {
         
+        data.forEach(function(d,i) {
+            data[i]["County"]=foo(data[i]["County"]);
+        });
+        
+            
         var year = 1997;
         var k=0;
         for(year=1997;year<=2013;year++)
             {
             
         svg.selectAll("path").each(function(d,i){
-            if(temp[i])
+            if(data[i])
             {    
-            var z= color(temp[i][year]);
+            var z= color(data[i][year]);
              
-            svg.select("#"+foo(temp[i]["County"]))
+            svg.select("#"+data[i]["County"])
              .transition()
              .duration(1000)
             .delay(1000*k)
             .style("fill", function(){
                 return z;});
             
-            svg.select("#"+foo(temp[i]["County"])).selectAll("path")
+            svg.select("#"+data[i]["County"]).selectAll("path")
              .transition()
             .delay(1000*k)
              .duration(1000)
