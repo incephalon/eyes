@@ -26,7 +26,7 @@
     var width = 500;
     var height = 500;
       
-    var  color = d3.scale.linear().domain([0,100,700]).range(['white', 'red',"rgb(140, 23, 40)"]).clamp(true);
+    var  color = d3.scale.linear().domain([0,100,400]).range(['white', 'red',"rgb(140, 23, 40)"]).clamp(true);
    
     /* color = d3.scale.quantize()
         .domain([0,600])
@@ -92,8 +92,8 @@
             
             svg.select("#"+data[i]["County"]).selectAll("path")
              .transition()
-            .delay(1000*k)
-             .duration(1000)
+             .delay(50*k)
+             .duration(50)
             .style("fill", function(d,i){
             
                 return z;});
