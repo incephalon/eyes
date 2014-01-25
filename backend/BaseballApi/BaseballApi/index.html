@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
+<head>
+    <title>Api Demo</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin-top: 20px;
+        }
+
+        .table {
+            
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body data-ng-controller="statisticsController">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <label class="control-label">Team:</label>
+                <select class="form-control"
+                    data-ng-model="team"
+                    data-ng-options="t.name for t in teams"
+                    data-ng-change="loadPlayers()">
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label class="control-label">Player:</label>
+                <select class="form-control"
+                    data-ng-model="player"
+                    data-ng-options="t.name for t in players"
+                    data-ng-change="loadStatistics()">
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>TimeStamp</th>
+                            <th>Rk</th>
+                            <th>Gcar</th>
+                            <th>Gtm</th>
+                            <th>Opp</th>
+                            <th>Rslt</th>
+                            <th>score</th>
+                            <th>Inngs</th>
+                            <th>PA</th>
+                            <th>AB</th>
+                            <th>R</th>
+                            <th>...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="stat in battingStatistics">
+                            <td>{{stat.timeStamp}}</td>
+                            <td>{{stat.rk}}</td>
+                            <td>{{stat.gcar}}</td>
+                            <td>{{stat.gtm}}</td>
+                            <td>{{stat.opp}}</td>
+                            <td>{{stat.rslt}}</td>
+                            <td>{{stat.score}}</td>
+                            <td>{{stat.inngs}}</td>
+                            <td>{{stat.pa}}</td>
+                            <td>{{stat.ab}}</td>
+                            <td>{{stat.r}}</td>
+                            <td>...</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/baseBallApp.js"></script>
+</body>
+</html>
