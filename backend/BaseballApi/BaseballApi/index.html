@@ -10,7 +10,6 @@
         }
 
         .table {
-            
             margin-top: 20px;
         }
     </style>
@@ -20,7 +19,11 @@
 
     <div class="container">
 
+
+        <div score-bars data="scoreData" label="name"></div>
+
         <div class="row">
+
 
             <div class="col-sm-6">
                 <label class="control-label">Team:</label>
@@ -73,7 +76,7 @@
                             <td>{{stat.ab}}</td>
                             <td>{{stat.r}}</td>
                             <td>...</td>
-                            
+
                         </tr>
                     </tbody>
                 </table>
@@ -84,6 +87,8 @@
 
     <script src="Scripts/jquery-2.1.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+
+    <script src="Scripts/d3.v3.js"></script>
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/baseBallApp.js"></script>
 </body>
