@@ -3,9 +3,9 @@
 var baseballApp = angular.module("baseballApp", []);
 
 baseballApp.factory("dataService", function ($http, $q) {
-    
+
     return {
-        getTeams : function () {
+        getTeams: function () {
 
             var defered = $q.defer();
 
@@ -18,8 +18,8 @@ baseballApp.factory("dataService", function ($http, $q) {
 
             return defered.promise;
         },
-        
-        getPlayers: function(teamId) {
+
+        getPlayers: function (teamId) {
             var defered = $q.defer();
 
             $http.get("/api/teamPlayers/?teamId=" + teamId)
@@ -31,8 +31,8 @@ baseballApp.factory("dataService", function ($http, $q) {
 
             return defered.promise;
         },
-        
-        getBattingStatistics: function(teamPlayerId) {
+
+        getBattingStatistics: function (teamPlayerId) {
 
             var defered = $q.defer();
 
@@ -56,27 +56,40 @@ baseballApp.controller("statisticsController",
         $scope.teams = [];
         $scope.players = [];
         $scope.battingStatistics = [];
+        $scope.years = [];
+        $scope.filter = {
+            timeStamp: ""
+        };
 
         $scope.loadPlayers = function () {
             $scope.players = [];
             $scope.battingStatistics = [];
+            $scope.years = [];
             dataService.getPlayers($scope.team.id).then(function (players) {
                 angular.copy(players, $scope.players);
             });
         };
 
-        $scope.loadStatistics = function() {
+        $scope.loadStatistics = function () {
             $scope.battingStatistics = [];
-            
+            $scope.years = [];
+
             dataService.getBattingStatistics($scope.player.teamPlayerId).then(function (statistics) {
                 angular.copy(statistics, $scope.battingStatistics);
+
+                for (var i = 0; i < statistics.length; i++) {
+                    var year = new Date(statistics[i].timeStamp).getFullYear();
+                    if ($scope.years.indexOf(year) == -1) {
+                        $scope.years.push(year);
+                    }
+                }
             });
         };
 
-        dataService.getTeams().then(function(teams) {
+        dataService.getTeams().then(function (teams) {
             angular.copy(teams, $scope.teams);
         });
-        
+
         $scope.scoreData = [
         { name: "Player1", score: 88 },
         { name: "Player2", score: 99 },
@@ -97,20 +110,20 @@ baseballApp.directive('scoreBars', function (d3Service) {
             data: "=",
             label: "@"
         },
-        
+
         //d3 code goes here
-        link: function(scope, iElement) {
+        link: function (scope, iElement) {
             var svg = d3Service.select(iElement[0])
                 .append("svg")
                 .attr("width", "100%");
 
             // watch for data changes and re-render
-            scope.$watch('data', function(newVals) {
+            scope.$watch('data', function (newVals) {
                 return scope.render(newVals);
             }, true);
 
             scope.render = function (data) {
-                
+
                 svg.selectAll("*").remove();
 
                 var width, height, max;
@@ -127,13 +140,13 @@ baseballApp.directive('scoreBars', function (d3Service) {
                     .attr("height", 30) // height of each bar
                     .attr("width", 0) // initial width of 0 for transition
                     .attr("x", 10) // half of the 20 side margin specified above
-                    .attr("y", function(d, i){
+                    .attr("y", function (d, i) {
                         return i * 35;
                     }) // height + margin between bars
                     .transition()
                       .duration(1000) // time of duration
-                      .attr("width", function(d){
-                          return d.score/(max/width);
+                      .attr("width", function (d) {
+                          return d.score / (max / width);
                       }); // width based on scale
 
                 svg.selectAll("text")
@@ -141,9 +154,9 @@ baseballApp.directive('scoreBars', function (d3Service) {
                   .enter()
                     .append("text")
                     .attr("fill", "#fff")
-                    .attr("y", function(d, i){return i * 35 + 22;})
+                    .attr("y", function (d, i) { return i * 35 + 22; })
                     .attr("x", 15)
-                    .text(function(d){return d[scope.label];});
+                    .text(function (d) { return d[scope.label]; });
 
             };
         }
