@@ -53,7 +53,7 @@ baseballApp.value('d3Service', d3);
 
 baseballApp.controller("statisticsController",
     function ($scope, $timeout, dataService) {
-        $scope.teams = [];
+        $scope.teams = ["TEX", "SFG", "STL","PHI"];
         $scope.players = [];
         $scope.battingStatistics = [];
         $scope.years = [];
@@ -86,9 +86,9 @@ baseballApp.controller("statisticsController",
             });
         };
 
-        dataService.getTeams().then(function (teams) {
-            angular.copy(teams, $scope.teams);
-        });
+        //dataService.getTeams().then(function (teams) {
+        //    angular.copy(teams, $scope.teams);
+        //});
 
         $scope.scoreData = [
         { name: "Player1", score: 88 },

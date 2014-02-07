@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
+<head>
+    <title>Api Demo</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin-top: 20px;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .lister
+        {
+            float:left;
+            width:150px;
+            height:800px;
+        }
+
+        #visual{
+            float:left;
+            width:1200px;
+            height:800px;
+        }
+        
+    </style>
+</head>
+
+<body data-ng-controller="statisticsController">
+
+
+
+<div class="lister" >
+    <ul id="teamList" ng-repeat="t in teams">
+        <li ng-click="loadPlayers(t.id)">{{t.name}}</li>
+    </ul>
+    </div>
+    <div class="lister" >
+
+    <ul id="playerList" ng-repeat="p in players">
+        <li ng-click="loadStatistics(p.teamPlayerId)">{{p.name}}</li>
+    </ul>
+    </div>
+    <div class="lister" >
+     <ulid="StatList" ng-repeat="s in battingStatistics">
+        <li ng-click="loadStatistics(p.teamPlayerId)">{{s.ab}}</li>
+    </ul>
+    </div>
+    //now put a directive here, that relies on which player it is
+    
+    <div id="visual" score-bars data="battingStatistics" label="name"></div>
+    
+
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
+<!--    <script src="Scripts/bootstrap.min.js"></script>-->
+    <script src="Scripts/d3.v3.min.js"></script>
+
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/baseBallAppMine.js"></script>
+
+
+</body>
+</html>
