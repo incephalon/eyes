@@ -10,6 +10,7 @@
             margin-right:0;
             vertical-align:bottom;
             float:left;
+            opacity:0;
         }
         body{
             background:beige;
@@ -58,14 +59,35 @@
     </body>
     
     <script>
-        $('img').width($(document).width()/30);
-        //$('img').height($(document).width()/15);
+//        $('img').width($(document).width()/30);
+//        //$('img').height($(document).width()/15);
+//        
+//        
+//        $('img').click(function(e){
+//            var x =$(this).attr('src');
+//            alert(x); 
+//        });
+//        
         
-        
-        $('img').click(function(e){
-            var x =$(this).attr('src');
-            alert(x); 
+        $(document).ready(function(){
+            $('img').width($(document).width()/30);
+            var counter=0;
+            
+//               $('img').each(function(i){
+//                   $(this).fadeTo(counter,  1);   
+//               
+//                   counter+=50;
+//               });
+            
+            $('img').each(function( i ){
+              $(this).delay(50*i).fadeTo(1000,1);
+            });
+            
+
         });
+        
+        
+        
     </script>
     
 </html>
