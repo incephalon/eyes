@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BaseballModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BaseballModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="BaseballModelStoreContainer">
           <EntitySet Name="BattingStatistics" EntityType="BaseballModel.Store.BattingStatistics" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PitchingStatistics" EntityType="BaseballModel.Store.PitchingStatistics" store:Type="Tables" Schema="dbo" />
@@ -130,6 +130,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RealName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TeamPlayers">
           <Key>
@@ -202,8 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BaseballModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -333,8 +333,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="TeamPlayers" Relationship="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id" FromRole="Players" ToRole="TeamPlayers" />
+          <Property Type="String" Name="RealName" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TeamPlayer">
           <Key>
@@ -519,8 +520,9 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="BaseballModel.Player">
               <MappingFragment StoreEntitySet="Players">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

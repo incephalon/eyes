@@ -11,7 +11,7 @@ namespace BaseballApi.Controllers
         public async Task<List<TeamPlayerViewModel>> Get(int teamId)
         {
             var players = await DbContext.TeamPlayers.Where(tp => tp.TeamId == teamId).Include(tp => tp.Player).
-                                          Select(tp => new TeamPlayerViewModel { TeamPlayerId = tp.Id, Name = tp.Player.Name }).ToListAsync();
+                                          Select(tp => new TeamPlayerViewModel { TeamPlayerId = tp.Id, Name = tp.Player.RealName }).ToListAsync();
 
             return players;
         }
