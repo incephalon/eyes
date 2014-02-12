@@ -194,37 +194,75 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="index2.html" />
+    <Content Include="Content\images\teams\ari.png" />
+    <Content Include="Content\images\teams\atl.png" />
+    <Content Include="Content\images\teams\bal.png" />
+    <Content Include="Content\images\teams\bos.png" />
+    <Content Include="Content\images\teams\chc.png" />
+    <Content Include="Content\images\teams\cin.png" />
+    <Content Include="Content\images\teams\cle.png" />
+    <Content Include="Content\images\teams\col.png" />
+    <Content Include="Content\images\teams\cws.png" />
+    <Content Include="Content\images\teams\det.png" />
+    <Content Include="Content\images\teams\hou.png" />
+    <Content Include="Content\images\teams\kcr.png" />
+    <Content Include="Content\images\teams\laa.png" />
+    <Content Include="Content\images\teams\lad.png" />
+    <Content Include="Content\images\teams\mia.png" />
+    <Content Include="Content\images\teams\mil.png" />
+    <Content Include="Content\images\teams\min.png" />
+    <Content Include="Content\images\teams\nym.png" />
+    <Content Include="Content\images\teams\nyy.png" />
+    <Content Include="Content\images\teams\oak.png" />
+    <Content Include="Content\images\teams\phi.png" />
+    <Content Include="Content\images\teams\pit.png" />
+    <Content Include="Content\images\teams\sdp.png" />
+    <Content Include="Content\images\teams\sea.png" />
+    <Content Include="Content\images\teams\sfg.png" />
+    <Content Include="Content\images\teams\stl.png" />
+    <Content Include="Content\images\teams\tbr.png" />
+    <Content Include="Content\images\teams\tex.png" />
+    <Content Include="Content\images\teams\tor.png" />
+    <Content Include="Content\images\teams\was.png" />
+    <Content Include="Scripts\app\animations.js" />
+    <Content Include="Scripts\app\baseBallApp.js" />
+    <Content Include="Scripts\app\hitBarsDirective.js" />
+    <Content Include="Scripts\app\services.js" />
+    <Content Include="Scripts\lib\angular-animate.js" />
+    <Content Include="Scripts\lib\angular-animate.min.js" />
+    <Content Include="Views\app\rangersDashBoard.html" />
+    <Content Include="Views\demo\index2.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
-    <Content Include="index3.html" />
+    <Content Include="Views\demo\index.html" />
+    <Content Include="Views\demo\index3.html" />
     <Content Include="LICENSE.txt" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular-resource.js" />
-    <Content Include="Scripts\angular-resource.min.js" />
-    <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Views\demo\rangersDashBoard.html" />
+    <Content Include="Scripts\lib\angular-resource.js" />
+    <Content Include="Scripts\lib\angular-resource.min.js" />
+    <Content Include="Scripts\lib\angular.js" />
+    <Content Include="Scripts\lib\angular.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\baseBallApp.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
-    <Content Include="Scripts\baseBallApp2.js" />
-    <Content Include="Scripts\baseballAppMine.js" />
-    <Content Include="Scripts\d3.v3.js" />
-    <Content Include="Scripts\d3.v3.min.js" />
-    <Content Include="Scripts\jquery-2.1.0.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\demo\baseBallApp.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\lib\angular-resource.min.js.map" />
+    <Content Include="Scripts\lib\angular-animate.min.js.map" />
+    <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\demo\baseBallApp2.js" />
+    <Content Include="Scripts\demo\baseballAppMine.js" />
+    <Content Include="Scripts\lib\d3.v3.js" />
+    <Content Include="Scripts\lib\d3.v3.min.js" />
+    <Content Include="Scripts\lib\jquery-2.1.0.js" />
+    <Content Include="Scripts\lib\jquery-2.1.0.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -232,7 +270,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Scripts\lib\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -263,7 +301,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\lib\angular.min.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

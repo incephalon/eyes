@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+    <script src="jquery.js"></script>
+    <style>
+        img {
+            padding: 0;
+            margin: 0;
+            margin-right: 0;
+            vertical-align: bottom;
+            float: left;
+            opacity: 0;
+        }
+
+        body {
+            background: beige;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <img src='mlb/ari.png' />
+    <img src='mlb/atl.png' />
+    <img src='mlb/bal.png' />
+    <img src='mlb/bos.png' />
+    <img src='mlb/chc.png' />
+    <img src='mlb/cin.png' />
+    <img src='mlb/cle.png' />
+    <img src='mlb/col.png' />
+    <img src='mlb/cws.png' />
+    <img src='mlb/det.png' />
+    <img src='mlb/hou.png' />
+    <img src='mlb/kcr.png' />
+    <img src='mlb/laa.png' />
+    <img src='mlb/lad.png' />
+    <img src='mlb/mia.png' />
+    <img src='mlb/mil.png' />
+    <img src='mlb/min.png' />
+    <img src='mlb/nym.png' />
+    <img src='mlb/nyy.png' />
+    <img src='mlb/oak.png' />
+    <img src='mlb/phi.png' />
+    <img src='mlb/pit.png' />
+    <img src='mlb/sdp.png' />
+    <img src='mlb/sea.png' />
+    <img src='mlb/sfg.png' />
+    <img src='mlb/stl.png' />
+    <img src='mlb/tbr.png' />
+    <img src='mlb/tex.png' />
+    <img src='mlb/tor.png' />
+    <img src='mlb/was.png' />
+
+
+
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        $('img').width($(document).width() / 30);
+
+        $('img').each(function (i) {
+            $(this).delay(50 * i).fadeTo(1000, 1);
+        });
+    });
+
+
+
+    </script>
+
+</html>

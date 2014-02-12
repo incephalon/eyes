@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
 <head>
     <title>Api Demo</title>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 
     <style>
         body {
@@ -18,8 +18,16 @@
 <body data-ng-controller="statisticsController">
 
     <div class="container">
+        
+        <a href="index2.html">To api filtering demo</a>
+        <br />
+        <br />
+
+
+        <div score-bars data="scoreData" label="name"></div>
 
         <div class="row">
+
 
             <div class="col-sm-4">
                 <label class="control-label">Team:</label>
@@ -38,11 +46,10 @@
                 </select>
             </div>
             <div class="col-sm-4">
-                <label class="control-label">Year (Api filtering):</label>
+                <label class="control-label">Year (Angular filtering):</label>
                 <select class="form-control"
-                        data-ng-model="year"
-                        data-ng-options="y for y in years"
-                        data-ng-change="loadStatistics()">
+                        data-ng-model="filter.timeStamp"
+                        data-ng-options="year for year in years">
                 </select>
             </div>
         </div>
@@ -67,7 +74,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="stat in battingStatistics">
+                        <tr data-ng-repeat="stat in battingStatistics | filter : filter">
                             <td>{{stat.timeStamp}}</td>
                             <td>{{stat.rk}}</td>
                             <td>{{stat.gcar}}</td>
@@ -89,11 +96,11 @@
     </div>
 
 
-    <script src="Scripts/jquery-2.1.0.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>
+    <script src="../../Scripts/lib/bootstrap.min.js"></script>
 
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-resource.js"></script>
-    <script src="Scripts/baseBallApp2.js"></script>
+    <script src="../../Scripts/lib/d3.v3.js"></script>
+    <script src="../../Scripts/lib/angular.js"></script>
+    <script src="../../Scripts/demo/baseBallApp.js"></script>
 </body>
 </html>

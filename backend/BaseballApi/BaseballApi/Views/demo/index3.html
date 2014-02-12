@@ -45,7 +45,7 @@
     </ul>
     </div>
     <div class="lister" >
-     <ulid="StatList" ng-repeat="s in battingStatistics">
+     <ul id="StatList" ng-repeat="s in battingStatistics">
         <li ng-click="loadStatistics(p.teamPlayerId)">{{s.ab}}</li>
     </ul>
     </div>
@@ -54,14 +54,14 @@
     <div id="visual" score-bars data="battingStatistics" label="name"></div>
     
 
-    <script src="Scripts/jquery-2.1.0.min.js"></script>
+    <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>
 <!--    <script src="Scripts/bootstrap.min.js"></script>-->
-    <script src="Scripts/d3.v3.min.js"></script>
+    <script src="../../Scripts/lib/d3.v3.min.js"></script>
 
 
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-resource.js"></script>
-    <script src="Scripts/baseBallAppMine.js"></script>
+    <script src="../../Scripts/lib/angular.js"></script>
+    <script src="../../Scripts/lib/angular-resource.js"></script>
+    <script src="../../Scripts/demo/baseBallAppMine.js"></script>
 
 
 </body>

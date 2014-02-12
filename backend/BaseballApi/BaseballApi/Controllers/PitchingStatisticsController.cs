@@ -10,7 +10,7 @@ namespace BaseballApi.Controllers
     {
         public async Task<List<PitchingStatistic>> Get(int teamPlayerId)
         {
-            var teams = await DbContext.PitchingStatistics.Where(s => s.TeamPlayerId == teamPlayerId).ToListAsync();
+            var teams = await DbContext.PitchingStatistics.Where(s => s.TeamPlayerId == teamPlayerId).OrderBy(s => s.TimeStamp).ToListAsync();
 
             return teams;
         }

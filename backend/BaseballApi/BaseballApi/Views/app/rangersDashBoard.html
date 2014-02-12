@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
+<head>
+    <title>Rangers Dashboard</title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        img:hover {
+            cursor: pointer;
+        }
+
+        .margin-top {
+            margin-top: 20px;
+        }
+
+        .bar {
+            fill: #428bca;
+        }
+
+            .bar:hover {
+                fill: #ddd;
+            }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #ddd;
+                shape-rendering: crispEdges;
+            }
+
+        .show-hide-animation.ng-hide-add {
+            opacity: 0;
+        }
+
+        .show-hide-animation.ng-hide-remove {
+            -webkit-transition: 1s linear all;
+            -moz-transition: 1s linear all;
+            -o-transition: 1s linear all;
+            transition: 1s linear all;
+            display: block!important;
+            opacity: 1;
+        }
+
+        .show-hide-animation.ng-hide {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="margin-top" data-ng-controller="statisticsController">
+
+    <div class="container">
+
+        <div id="teamsContainer" class="row col-sm-12">
+            <img
+                data-ng-repeat="t in teams"
+                class="animate-team"
+                data-ng-src="../../Content/images/teams/{{t.image()}}"
+                alt="{{t.name}}"
+                data-ng-click="loadPlayers(t)" />
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 col-md-2">
+                <div class="list-group margin-top">
+                    <a href="#"
+                        data-ng-repeat="p in players"
+                        data-ng-class="{'list-group-item animate-player': true, 'active': isSelectedPlayer(p)}"
+                        data-ng-click="selectPlayer(p)">{{p.name}}
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-10">
+                <div data-ng-show="players.length > 0" class="panel panel-default margin-top show-hide-animation">
+                    <div class="panel-heading">
+
+                        <div class="row">
+
+                            <div class="col-sm-9">
+                                <h3 class="panel-title">Hits Statistics</h3>
+                            </div>
+
+                            <div class="col-sm-3">
+
+                                <select class="form-control pull-right"
+                                    data-ng-disabled="years.length == 0"
+                                    data-ng-model="year"
+                                    data-ng-options="y for y in years"
+                                    data-ng-change="filterStatistics()">
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="hit-bars" data="filteredStatistics" label="name"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>
+    <!--<script src="../../Scripts/lib/bootstrap.min.js"></script>-->
+
+    <script src="../../Scripts/lib/d3.v3.js"></script>
+    <script src="../../Scripts/lib/angular.js"></script>
+    <script src="../../Scripts/lib/angular-resource.js"></script>
+    <script src="../../Scripts/lib/angular-animate.js"></script>
+
+    <script src="../../Scripts/app/baseBallApp.js"></script>
+    <script src="../../Scripts/app/animations.js"></script>
+    <script src="../../Scripts/app/hitBarsDirective.js"></script>
+    <script src="../../Scripts/app/services.js"></script>
+</body>
+</html>
