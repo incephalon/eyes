@@ -3,52 +3,8 @@
 <head>
     <title>Rangers Dashboard</title>
     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/site.css" rel="stylesheet" />
 
-    <style>
-        img:hover {
-            cursor: pointer;
-        }
-
-        .margin-top {
-            margin-top: 20px;
-        }
-
-        .bar {
-            fill: #428bca;
-        }
-
-            .bar:hover {
-                fill: #ddd;
-            }
-
-        .axis {
-            font: 10px sans-serif;
-        }
-
-            .axis path,
-            .axis line {
-                fill: none;
-                stroke: #ddd;
-                shape-rendering: crispEdges;
-            }
-
-        .show-hide-animation.ng-hide-add {
-            opacity: 0;
-        }
-
-        .show-hide-animation.ng-hide-remove {
-            -webkit-transition: 1s linear all;
-            -moz-transition: 1s linear all;
-            -o-transition: 1s linear all;
-            transition: 1s linear all;
-            display: block!important;
-            opacity: 1;
-        }
-
-        .show-hide-animation.ng-hide {
-            opacity: 0;
-        }
-    </style>
 </head>
 
 <body class="margin-top" data-ng-controller="statisticsController">
@@ -59,7 +15,7 @@
             <img
                 data-ng-repeat="t in teams"
                 class="animate-team"
-                data-ng-src="../../Content/images/teams/{{t.image()}}"
+                data-ng-src="../../Content/images/teams/{{t.name + '.png'}}"
                 alt="{{t.name}}"
                 data-ng-click="loadPlayers(t)" />
         </div>
@@ -68,8 +24,8 @@
             <div class="col-sm-3 col-md-2">
                 <div class="list-group margin-top">
                     <a href="#"
-                        data-ng-repeat="p in players"
-                        data-ng-class="{'list-group-item animate-player': true, 'active': isSelectedPlayer(p)}"
+                        data-ng-repeat="p in players | filter: shouldDisplayPlayer | orderBy: 'name'"
+                        data-ng-class="{'list-group-item animate-repeat': true, 'active': isSelectedPlayer(p)}"
                         data-ng-click="selectPlayer(p)">{{p.name}}
                     </a>
                 </div>
@@ -90,7 +46,7 @@
                                     data-ng-disabled="years.length == 0"
                                     data-ng-model="year"
                                     data-ng-options="y for y in years"
-                                    data-ng-change="filterStatistics()">
+                                    data-ng-change="selectYear()">
                                 </select>
                             </div>
 

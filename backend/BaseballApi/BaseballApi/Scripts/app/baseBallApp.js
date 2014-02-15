@@ -3,17 +3,17 @@
 var baseballApp = angular.module("baseballApp", ['ngResource', 'ngAnimate']);
 
 baseballApp.controller("statisticsController",
-    function ($scope, $timeout, dataService, globals) {
+    function ($scope, $timeout, dataService) {
         $scope.teams = [];
         $scope.players = [];
         $scope.filteredStatistics = [];
-        $scope.years = [];
-        $scope.year = null;
-        $scope.player = {};
-        var allStatistics = [];
+        $scope.years = [2009, 2010, 2011, 2012, 2013];
+        $scope.year = 2013;
+        $scope.player = null;
 
         $scope.loadPlayers = function (team) {
-            globals.playersCounter = 0;
+            $scope.player = null;
+            $scope.year = 2013;
             $scope.players = [];
             $scope.filteredStatistics = [];
             $scope.players = dataService.getPlayers(team.id);
@@ -23,34 +23,33 @@ baseballApp.controller("statisticsController",
             return player === $scope.player;
         };
 
-        $scope.selectPlayer = function (player) {
-            $scope.year = null;
-            $scope.years = [];
-            $scope.filteredStatistics = [];
-            $scope.player = player;
-            loadAllStatistics();
+        $scope.shouldDisplayPlayer = function(player) {
+            return player.years.indexOf($scope.year) > -1;
         };
 
-        $scope.filterStatistics = function() {
-            for (var i = 0; i < allStatistics.length; i++) {
-                if (allStatistics[i].year() == $scope.year) {
-                    $scope.filteredStatistics.push(allStatistics[i]);
-                }
+        $scope.selectPlayer = function (player) {
+            $scope.player = player;
+            loadStatistics();
+        };        
+        
+        $scope.selectYear = function () {
+            
+            if ($scope.player && !$scope.shouldDisplayPlayer($scope.player)) {
+                $scope.player = null;
+            }
+            
+            loadStatistics();
+        };
+
+        function loadStatistics() {
+            $scope.filteredStatistics = [];
+
+            if ($scope.year && $scope.player) {
+                $scope.filteredStatistics = dataService.getBattingStatistics($scope.player.teamPlayerId, $scope.year);
             }
         };
 
-        function loadAllStatistics() {
-            dataService.getBattingStatistics($scope.player.teamPlayerId, null, function (statistics) {
-                allStatistics = statistics;
-                for (var i = 0; i < statistics.length; i++) {
-                    var year = statistics[i].year();
-                    if ($scope.years.indexOf(year) == -1) {
-                        $scope.years.push(year);
-                    }
-                }
-            });
-
-        };
-
-        $scope.teams = dataService.getTeams();
+        $timeout(function() {
+            $scope.teams = dataService.getTeams();
+        }, 0);
     });

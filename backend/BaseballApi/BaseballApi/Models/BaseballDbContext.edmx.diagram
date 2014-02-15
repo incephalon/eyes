@@ -8,12 +8,14 @@
         <EntityTypeShape EntityType="BaseballModel.BattingStatistic" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseballModel.PitchingStatistic" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseballModel.Player" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseballModel.TeamPlayer" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseballModel.TeamPlayer" Width="1.5" PointX="3.125" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseballModel.Team" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="BaseballModel.FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id" ManuallyRouted="false" />
         <AssociationConnector Association="BaseballModel.FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id" ManuallyRouted="false" />
         <AssociationConnector Association="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id" ManuallyRouted="false" />
         <AssociationConnector Association="BaseballModel.FK_TeamPlayers_TeamId_Teams_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BaseballModel.TeamPlayerPeriod" Width="1.5" PointX="3" PointY="13.25" />
+        <AssociationConnector Association="BaseballModel.FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

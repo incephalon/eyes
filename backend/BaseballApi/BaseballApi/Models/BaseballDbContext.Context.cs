@@ -30,5 +30,6 @@ namespace BaseballApi.Models
         public DbSet<Player> Players { get; set; }
         public DbSet<TeamPlayer> TeamPlayers { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamPlayerPeriod> TeamPlayerPeriods { get; set; }
     }
 }

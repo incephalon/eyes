@@ -190,6 +190,9 @@
     <Compile Include="Models\TeamPlayer.cs">
       <DependentUpon>BaseballDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TeamPlayerPeriod.cs">
+      <DependentUpon>BaseballDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TeamPlayerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -269,7 +272,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Scripts\lib\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup />

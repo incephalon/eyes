@@ -18,6 +18,7 @@ namespace BaseballApi.Models
         {
             this.BattingStatistics = new HashSet<BattingStatistic>();
             this.PitchingStatistics = new HashSet<PitchingStatistic>();
+            this.TeamPlayerPeriods = new HashSet<TeamPlayerPeriod>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace BaseballApi.Models
         public virtual ICollection<PitchingStatistic> PitchingStatistics { get; set; }
         public virtual Player Player { get; set; }
         public virtual Team Team { get; set; }
+        public virtual ICollection<TeamPlayerPeriod> TeamPlayerPeriods { get; set; }
     }
 }
