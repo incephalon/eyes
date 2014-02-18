@@ -231,10 +231,12 @@
     <Content Include="Content\images\teams\was.png" />
     <Content Include="Scripts\app\animations.js" />
     <Content Include="Scripts\app\baseBallApp.js" />
+    <Content Include="Scripts\app\baseballApp2.js" />
     <Content Include="Scripts\app\hitBarsDirective.js" />
     <Content Include="Scripts\app\services.js" />
     <Content Include="Scripts\lib\angular-animate.js" />
     <Content Include="Scripts\lib\angular-animate.min.js" />
+    <Content Include="Views\app\rangersTwo.html" />
     <Content Include="Views\app\rangersDashBoard.html" />
     <Content Include="Views\demo\index2.html" />
     <Content Include="favicon.ico" />

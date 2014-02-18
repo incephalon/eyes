@@ -1,31 +1,108 @@
-﻿<!DOCTYPE html>
+﻿    <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
 <head>
     <title>Rangers Dashboard</title>
     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../../Content/site.css" rel="stylesheet" />
 
+    <style>
+        body
+        {
+            background:beige;
+        }
+        img:hover {
+            cursor: pointer;
+        }
+
+        .margin-top {
+            margin-top: 20px;
+        }
+
+        .bar {
+            fill: #428bca;
+        }
+
+            .bar:hover {
+                fill: #ddd;
+            }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #ddd;
+                shape-rendering: crispEdges;
+            }
+
+        .show-hide-animation.ng-hide-add {
+            opacity: 0;
+        }
+
+        .show-hide-animation.ng-hide-remove {
+            -webkit-transition: 1s linear all;
+            -moz-transition: 1s linear all;
+            -o-transition: 1s linear all;
+            transition: 1s linear all;
+            display: block!important;
+            opacity: 1;
+        }
+
+        .show-hide-animation.ng-hide {
+            opacity: 0;
+        }
+    </style>
 </head>
 
 <body class="margin-top" data-ng-controller="statisticsController">
 
-    <div class="container">
-
-        <div id="teamsContainer" class="row col-sm-12">
-            <img
+                <img
                 data-ng-repeat="t in teams"
                 class="animate-team"
-                data-ng-src="../../Content/images/teams/{{t.name + '.png'}}"
+                data-ng-src="../../Content/images/teams/{{t.image()}}"
                 alt="{{t.name}}"
                 data-ng-click="loadPlayers(t)" />
-        </div>
+
+
+<!--        <img src='../../Content/images/teams/ari.png' ng-click="loadPlayers()"/>
+        <img src='../../Content/images/teams/atl.png'/>
+        <img src='../../Content/images/teams/bal.png'/>
+        <img src='../../Content/images/teams/bos.png'/>
+        <img src='../../Content/images/teams/chc.png'/>
+        <img src='../../Content/images/teams/cin.png'/>
+        <img src='../../Content/images/teams/cle.png'/>
+        <img src='../../Content/images/teams/col.png'/>
+        <img src='../../Content/images/teams/chw.png'/>
+        <img src='../../Content/images/teams/det.png'/>
+        <img src='../../Content/images/teams/hou.png'/>
+        <img src='../../Content/images/teams/kcr.png'/>
+        <img src='../../Content/images/teams/laa.png'/>
+        <img src='../../Content/images/teams/lad.png'/>
+        <img src='../../Content/images/teams/mia.png'/>
+        <img src='../../Content/images/teams/mil.png'/>
+        <img src='../../Content/images/teams/min.png'/>
+        <img src='../../Content/images/teams/nym.png'/>
+        <img src='../../Content/images/teams/nyy.png'/>
+        <img src='../../Content/images/teams/oak.png'/>
+        <img src='../../Content/images/teams/phi.png'/>    
+        <img src='../../Content/images/teams/pit.png'/>
+        <img src='../../Content/images/teams/sdp.png'/>
+        <img src='../../Content/images/teams/sea.png'/>
+        <img src='../../Content/images/teams/sfg.png'/>
+        <img src='../../Content/images/teams/stl.png'/>
+        <img src='../../Content/images/teams/tbr.png'/>
+        <img src='../../Content/images/teams/tex.png'/>
+        <img src='../../Content/images/teams/tor.png'/>
+        <img src='../../Content/images/teams/wsn.png'/>-->
+
 
         <div class="row">
             <div class="col-sm-3 col-md-2">
                 <div class="list-group margin-top">
                     <a href="#"
-                        data-ng-repeat="p in players | filter: shouldDisplayPlayer | orderBy: 'name'"
-                        data-ng-class="{'list-group-item animate-repeat': true, 'active': isSelectedPlayer(p)}"
+                        data-ng-repeat="p in players"
+                        data-ng-class="{'list-group-item animate-player': true, 'active': isSelectedPlayer(p)}"
                         data-ng-click="selectPlayer(p)">{{p.name}}
                     </a>
                 </div>
@@ -46,7 +123,7 @@
                                     data-ng-disabled="years.length == 0"
                                     data-ng-model="year"
                                     data-ng-options="y for y in years"
-                                    data-ng-change="selectYear()">
+                                    data-ng-change="filterStatistics()">
                                 </select>
                             </div>
 
@@ -60,7 +137,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
 
     <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>

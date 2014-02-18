@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var baseballApp = angular.module("baseballApp", ['ngResource', 'ngAnimate']);
+var baseballApp = angular.module("baseballApp", ['ngResource', 'ngAnimate']);//need to move this to baseballApp2
 
 baseballApp.controller("statisticsController",
     function ($scope, $timeout, dataService) {

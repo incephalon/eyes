@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaseballModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="baseballEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="BattingStatistics" EntityType="BaseballModel.BattingStatistic" />
+    <EntitySet Name="PitchingStatistics" EntityType="BaseballModel.PitchingStatistic" />
+    <EntitySet Name="Players" EntityType="BaseballModel.Player" />
+    <EntitySet Name="TeamPlayers" EntityType="BaseballModel.TeamPlayer" />
+    <EntitySet Name="Teams" EntityType="BaseballModel.Team" />
+    <AssociationSet Name="FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id" Association="BaseballModel.FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id">
+      <End Role="TeamPlayers" EntitySet="TeamPlayers" />
+      <End Role="BattingStatistics" EntitySet="BattingStatistics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id" Association="BaseballModel.FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id">
+      <End Role="TeamPlayers" EntitySet="TeamPlayers" />
+      <End Role="PitchingStatistics" EntitySet="PitchingStatistics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamPlayers_PlayerId_Players_Id" Association="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="TeamPlayers" EntitySet="TeamPlayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamPlayers_TeamId_Teams_Id" Association="BaseballModel.FK_TeamPlayers_TeamId_Teams_Id">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="TeamPlayers" EntitySet="TeamPlayers" />
+    </AssociationSet>
+    <EntitySet Name="TeamPlayerPeriods" EntityType="BaseballModel.TeamPlayerPeriod" />
+    <AssociationSet Name="FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id" Association="BaseballModel.FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id">
+      <End Role="TeamPlayer" EntitySet="TeamPlayers" />
+      <End Role="TeamPlayerPeriod" EntitySet="TeamPlayerPeriods" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BattingStatistic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamPlayerId" Type="Int32" Nullable="false" />
+    <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Rk" Type="Int16" />
+    <Property Name="Gcar" Type="Int16" />
+    <Property Name="Gtm" Type="Double" />
+    <Property Name="Column_7" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Opp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Rslt" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="score" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Inngs" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PA" Type="Int16" />
+    <Property Name="AB" Type="Int16" />
+    <Property Name="R" Type="Int16" />
+    <Property Name="H" Type="Int16" />
+    <Property Name="C2B" Type="Int16" />
+    <Property Name="C3B" Type="Int16" />
+    <Property Name="HR" Type="Int16" />
+    <Property Name="RBI" Type="Int16" />
+    <Property Name="BB" Type="Int16" />
+    <Property Name="IBB" Type="Int16" />
+    <Property Name="SO" Type="Int16" />
+    <Property Name="HBP" Type="Int16" />
+    <Property Name="SH" Type="Int16" />
+    <Property Name="SF" Type="Double" />
+    <Property Name="ROE" Type="Int16" />
+    <Property Name="GDP" Type="Int16" />
+    <Property Name="SB" Type="Int16" />
+    <Property Name="CS" Type="Int16" />
+    <Property Name="BA" Type="Double" />
+    <Property Name="OBP" Type="Double" />
+    <Property Name="SLG" Type="Double" />
+    <Property Name="OPS" Type="Double" />
+    <Property Name="BOP" Type="Int16" />
+    <Property Name="aLI" Type="Double" />
+    <Property Name="WPA" Type="Double" />
+    <Property Name="RE24" Type="Double" />
+    <NavigationProperty Name="TeamPlayer" Relationship="BaseballModel.FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id" FromRole="BattingStatistics" ToRole="TeamPlayers" />
+  </EntityType>
+  <EntityType Name="PitchingStatistic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamPlayerId" Type="Int32" Nullable="false" />
+    <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Rk" Type="Int16" />
+    <Property Name="Gcar" Type="Int16" />
+    <Property Name="Gtm" Type="Double" />
+    <Property Name="Column_7" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Opp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Rslt" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="score" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Inngs" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Dec" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DR" Type="Int16" />
+    <Property Name="IP" Type="Double" />
+    <Property Name="H" Type="Int16" />
+    <Property Name="R" Type="Int16" />
+    <Property Name="ER" Type="Int16" />
+    <Property Name="BB" Type="Int16" />
+    <Property Name="SO" Type="Int16" />
+    <Property Name="HR" Type="Int16" />
+    <Property Name="HBP" Type="Int16" />
+    <Property Name="ERA" Type="Double" />
+    <Property Name="BF" Type="Int16" />
+    <Property Name="Pit" Type="Int16" />
+    <Property Name="Str" Type="Int16" />
+    <Property Name="StL" Type="Int16" />
+    <Property Name="StS" Type="Int16" />
+    <Property Name="GB" Type="Int16" />
+    <Property Name="FB" Type="Int16" />
+    <Property Name="LD" Type="Int16" />
+    <Property Name="PU" Type="Int16" />
+    <Property Name="Unk" Type="Int16" />
+    <Property Name="GSc" Type="Int16" />
+    <Property Name="IR" Type="Int16" />
+    <Property Name="IS" Type="Int16" />
+    <Property Name="SB" Type="Int16" />
+    <Property Name="CS" Type="Int16" />
+    <Property Name="PO" Type="Int16" />
+    <Property Name="AB" Type="Int16" />
+    <Property Name="C2B" Type="Int16" />
+    <Property Name="C3B" Type="Int16" />
+    <Property Name="IBB" Type="Int16" />
+    <Property Name="GDP" Type="Int16" />
+    <Property Name="SF" Type="Double" />
+    <Property Name="ROE" Type="Int16" />
+    <Property Name="aLI" Type="Double" />
+    <Property Name="WPA" Type="Double" />
+    <Property Name="RE24" Type="Double" />
+    <Property Name="Entered" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="TeamPlayer" Relationship="BaseballModel.FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id" FromRole="PitchingStatistics" ToRole="TeamPlayers" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="TeamPlayers" Relationship="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id" FromRole="Players" ToRole="TeamPlayers" />
+    <Property Type="String" Name="RealName" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TeamPlayer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BattingStatistics" Relationship="BaseballModel.FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id" FromRole="TeamPlayers" ToRole="BattingStatistics" />
+    <NavigationProperty Name="PitchingStatistics" Relationship="BaseballModel.FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id" FromRole="TeamPlayers" ToRole="PitchingStatistics" />
+    <NavigationProperty Name="Player" Relationship="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id" FromRole="TeamPlayers" ToRole="Players" />
+    <NavigationProperty Name="Team" Relationship="BaseballModel.FK_TeamPlayers_TeamId_Teams_Id" FromRole="TeamPlayers" ToRole="Teams" />
+    <NavigationProperty Name="TeamPlayerPeriods" Relationship="BaseballModel.FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id" FromRole="TeamPlayer" ToRole="TeamPlayerPeriod" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="TeamPlayers" Relationship="BaseballModel.FK_TeamPlayers_TeamId_Teams_Id" FromRole="Teams" ToRole="TeamPlayers" />
+  </EntityType>
+  <Association Name="FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id">
+    <End Role="TeamPlayers" Type="BaseballModel.TeamPlayer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BattingStatistics" Type="BaseballModel.BattingStatistic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeamPlayers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BattingStatistics">
+        <PropertyRef Name="TeamPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PitchingStatistics_TeamPlayerId_TeamPlayers_Id">
+    <End Role="TeamPlayers" Type="BaseballModel.TeamPlayer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PitchingStatistics" Type="BaseballModel.PitchingStatistic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeamPlayers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PitchingStatistics">
+        <PropertyRef Name="TeamPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamPlayers_PlayerId_Players_Id">
+    <End Role="Players" Type="BaseballModel.Player" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TeamPlayers" Type="BaseballModel.TeamPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamPlayers">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamPlayers_TeamId_Teams_Id">
+    <End Role="Teams" Type="BaseballModel.Team" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TeamPlayers" Type="BaseballModel.TeamPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamPlayers">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TeamPlayerPeriod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TeamPlayerId" Nullable="false" />
+    <Property Type="Int16" Name="FromYear" Nullable="false" />
+    <Property Type="Int16" Name="ToYear" />
+    <NavigationProperty Name="TeamPlayer" Relationship="BaseballModel.FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id" FromRole="TeamPlayerPeriod" ToRole="TeamPlayer" />
+  </EntityType>
+  <Association Name="FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id">
+    <End Type="BaseballModel.TeamPlayer" Role="TeamPlayer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BaseballModel.TeamPlayerPeriod" Role="TeamPlayerPeriod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeamPlayer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamPlayerPeriod">
+        <PropertyRef Name="TeamPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
