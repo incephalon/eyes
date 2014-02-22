@@ -24,6 +24,7 @@ namespace BaseballApi.Models
         public int Id { get; set; }
         public int TeamId { get; set; }
         public int PlayerId { get; set; }
+        public bool IsPitcher { get; set; }
     
         public virtual ICollection<BattingStatistic> BattingStatistics { get; set; }
         public virtual ICollection<PitchingStatistic> PitchingStatistics { get; set; }

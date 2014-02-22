@@ -11,7 +11,7 @@ namespace BaseballApi.Controllers
     {
         public async Task<List<TeamPlayerViewModel>> Get(int teamId)
         {
-            var players = await DbContext.TeamPlayers.Where(tp => tp.TeamId == teamId)
+            var players = await DbContext.TeamPlayers.Where(tp => tp.TeamId == teamId && !tp.IsPitcher)
                                          .Include(tp => tp.Player)
                                          .Include(tp => tp.TeamPlayerPeriods).ToListAsync();
 

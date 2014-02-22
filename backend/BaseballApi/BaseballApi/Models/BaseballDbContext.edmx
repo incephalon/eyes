@@ -74,6 +74,7 @@
           <Property Name="aLI" Type="float" />
           <Property Name="WPA" Type="float" />
           <Property Name="RE24" Type="float" />
+          <Property Name="Pos" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PitchingStatistics">
           <Key>
@@ -153,6 +154,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TeamId" Type="int" Nullable="false" />
           <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="IsPitcher" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Teams">
           <Key>
@@ -305,6 +307,7 @@
           <Property Name="WPA" Type="Double" />
           <Property Name="RE24" Type="Double" />
           <NavigationProperty Name="TeamPlayer" Relationship="BaseballModel.FK_BattingStatistics_TeamPlayerId_TeamPlayers_Id" FromRole="BattingStatistics" ToRole="TeamPlayers" />
+          <Property Type="String" Name="Pos" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PitchingStatistic">
           <Key>
@@ -382,6 +385,7 @@
           <NavigationProperty Name="Player" Relationship="BaseballModel.FK_TeamPlayers_PlayerId_Players_Id" FromRole="TeamPlayers" ToRole="Players" />
           <NavigationProperty Name="Team" Relationship="BaseballModel.FK_TeamPlayers_TeamId_Teams_Id" FromRole="TeamPlayers" ToRole="Teams" />
           <NavigationProperty Name="TeamPlayerPeriods" Relationship="BaseballModel.FK_TeamPlayerPeriods_TeamPlayerId_TeamPlayers_Id" FromRole="TeamPlayer" ToRole="TeamPlayerPeriod" />
+          <Property Type="Boolean" Name="IsPitcher" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -480,6 +484,7 @@
           <EntitySetMapping Name="BattingStatistics">
             <EntityTypeMapping TypeName="BaseballModel.BattingStatistic">
               <MappingFragment StoreEntitySet="BattingStatistics">
+                <ScalarProperty Name="Pos" ColumnName="Pos" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TeamPlayerId" ColumnName="TeamPlayerId" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
@@ -587,6 +592,7 @@
           <EntitySetMapping Name="TeamPlayers">
             <EntityTypeMapping TypeName="BaseballModel.TeamPlayer">
               <MappingFragment StoreEntitySet="TeamPlayers">
+                <ScalarProperty Name="IsPitcher" ColumnName="IsPitcher" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />

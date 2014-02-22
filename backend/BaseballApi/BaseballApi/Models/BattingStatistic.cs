@@ -51,6 +51,7 @@ namespace BaseballApi.Models
         public Nullable<double> aLI { get; set; }
         public Nullable<double> WPA { get; set; }
         public Nullable<double> RE24 { get; set; }
+        public string Pos { get; set; }
     
         public virtual TeamPlayer TeamPlayer { get; set; }
     }
