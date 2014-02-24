@@ -9,27 +9,23 @@
 
 <body class="margin-top" data-ng-controller="statisticsController">
 
-    <div class="container">
+    <img
+    data-ng-repeat="t in teams"
+    class="animate-team"
+    data-ng-src="../../Content/images/teams/{{t.name + '.png'}}"
+    alt="{{t.name}}"
+    data-ng-click="loadPlayers(t.id)" />
 
-        <div id="teamsContainer" class="row col-sm-12">
-            <img
-                data-ng-repeat="t in teams"
-                class="animate-team"
-                data-ng-src="../../Content/images/teams/{{t.name + '.png'}}"
-                alt="{{t.name}}"
-                data-ng-click="loadPlayers(t)" />
-        </div>
+    <div>
+        <a href="#"
+            data-ng-repeat="p in players | filter: shouldDisplayPlayer | orderBy: 'name'"
+            data-ng-class="{'list-group-item animate-repeat': true, 'active': isSelectedPlayer(p)}"
+            data-ng-click="selectPlayer(p)">{{p.name}}
+        </a>
+    </div>
+
 
         <div class="row">
-            <div class="col-sm-3 col-md-2">
-                <div class="list-group margin-top">
-                    <a href="#"
-                        data-ng-repeat="p in players | filter: shouldDisplayPlayer | orderBy: 'name'"
-                        data-ng-class="{'list-group-item animate-repeat': true, 'active': isSelectedPlayer(p)}"
-                        data-ng-click="selectPlayer(p)">{{p.name}}
-                    </a>
-                </div>
-            </div>
             <div class="col-sm-9 col-md-10">
                 <div data-ng-show="players.length > 0" class="panel panel-default margin-top show-hide-animation">
                     <div class="panel-heading">
@@ -71,7 +67,7 @@
     <script src="../../Scripts/lib/angular-resource.js"></script>
     <script src="../../Scripts/lib/angular-animate.js"></script>
 
-    <script src="../../Scripts/app/baseBallApp2.js"></script>
+    <script src="../../Scripts/app/baseBallApp.js"></script>
     <script src="../../Scripts/app/animations.js"></script>
     <script src="../../Scripts/app/hitBarsDirective.js"></script>
     <script src="../../Scripts/app/services.js"></script>
