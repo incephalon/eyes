@@ -2,8 +2,8 @@
 
 baseballApp.animation('.animate-team', function (globals) {
 
-    var imgWidth = $("#teamsContainer").width() / $(".container img").length;
-    //var imgWidth = $(window).width() / 32;
+    //var imgWidth = $("#teamsContainer").width() / $(".container img").length;
+    var imgWidth = $(window).width() / 32;
 
     return {
         enter: function (element, done) {
