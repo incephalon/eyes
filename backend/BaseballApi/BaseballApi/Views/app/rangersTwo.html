@@ -22,12 +22,12 @@
         }
         img
         {
-            //opacity:0;
+            opacity:0;
         }
     </style>
 </head>
 
-<body class="margin-top" data-ng-controller="statisticsController">
+<body class="margin-top" data-ng-controller="statisticsController" data-ng-cloak>
 
     <img
     data-ng-repeat="t in teams"
@@ -71,22 +71,6 @@
                         <div class="hit-bars" data="filteredStatistics" label="name"></div>
                     </div>
                 </div>
-        
-  <script>
-      $(document).ready(function () {
-          var imgWidth = $(window).width() / 31;
-          $('img').width(imgWidth);
-          //$('img').each(function (i) {
-          //    $(this).delay(50 * i).fadeTo(1000, 1, done);
-          //});
-
-          $('img').each(function (i) {
-              $(this).delay((i++) * 50).fadeTo(1000, 1);
-          });
-      });
-  </script>
-
-
 
     <!--<script src="../../Scripts/lib/bootstrap.min.js"></script>-->
 
