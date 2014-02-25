@@ -2,9 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="baseballApp">
 <head>
     <title>Rangers Dashboard</title>
+    <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>
+
     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Content/site.css" rel="stylesheet" />
+        
+    <style>
+        body{
+            background:beige;
+        }
+        #playersList{
+            width:10%;
+            float:left;
 
+        }
+        #righter{
+            width:80%;
+            float:left;
+        }
+        img
+        {
+            //opacity:0;
+        }
+    </style>
 </head>
 
 <body class="margin-top" data-ng-controller="statisticsController">
@@ -16,7 +36,7 @@
     alt="{{t.name}}"
     data-ng-click="loadPlayers(t.id)" />
 
-    <div>
+    <div id="playersList">
         <a href="#"
             data-ng-repeat="p in players | filter: shouldDisplayPlayer | orderBy: 'name'"
             data-ng-class="{'list-group-item animate-repeat': true, 'active': isSelectedPlayer(p)}"
@@ -24,10 +44,7 @@
         </a>
     </div>
 
-
-        <div class="row">
-            <div class="col-sm-9 col-md-10">
-                <div data-ng-show="players.length > 0" class="panel panel-default margin-top show-hide-animation">
+                <div id="righter" data-ng-show="players.length > 0" class="panel panel-default margin-top show-hide-animation">
                     <div class="panel-heading">
 
                         <div class="row">
@@ -54,12 +71,23 @@
                         <div class="hit-bars" data="filteredStatistics" label="name"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+        
+  <script>
+      $(document).ready(function () {
+          var imgWidth = $(window).width() / 31;
+          $('img').width(imgWidth);
+          //$('img').each(function (i) {
+          //    $(this).delay(50 * i).fadeTo(1000, 1, done);
+          //});
+
+          $('img').each(function (i) {
+              $(this).delay((i++) * 50).fadeTo(1000, 1);
+          });
+      });
+  </script>
 
 
-    <script src="../../Scripts/lib/jquery-2.1.0.min.js"></script>
+
     <!--<script src="../../Scripts/lib/bootstrap.min.js"></script>-->
 
     <script src="../../Scripts/lib/d3.v3.js"></script>
